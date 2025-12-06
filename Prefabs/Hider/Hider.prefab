@@ -1718,6 +1718,7 @@ GameObject:
   - component: {fileID: 8268170802347756040}
   - component: {fileID: -7539507066955439683}
   - component: {fileID: 5749894181979320917}
+  - component: {fileID: 400539388516460144}
   m_Layer: 0
   m_Name: Hider
   m_TagString: Untagged
@@ -1820,6 +1821,28 @@ MonoBehaviour:
   PlayerSpeed: 2
   JumpForce: 5
   GravityValue: -9.81
+--- !u!95 &400539388516460144
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543870772051887740}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ca3c07313182a94bba3b0069f3d49da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8271974769035426867
 GameObject:
   m_ObjectHideFlags: 0

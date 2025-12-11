@@ -1383,6 +1383,7 @@ GameObject:
   - component: {fileID: 3214426263663606795}
   - component: {fileID: 3033873654561136040}
   - component: {fileID: 649992112380926904}
+  - component: {fileID: 808884181255253871}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -1442,6 +1443,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f84294483f678f499b345c5566cc9e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &808884181255253871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793822758416318010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 3033873654561136040}
+  ApplyTiming: 2
+  SyncSettings: 79
+  StateHashes: 0000000039e4f3b20a57d685792b46e34a9863d4df27ac0631456473f34e8a73ee494d34
+  TriggerHashes: 00000000
+  TotalWords: 1
 --- !u!1 &5811313180802656102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,6 +2053,8 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: -7539507066955439683}
   - {fileID: 5749894181979320917}
+  - {fileID: 649992112380926904}
+  - {fileID: 808884181255253871}
   ForceRemoteRenderTimeframe: 0
 --- !u!143 &8268170802347756040
 CharacterController:

@@ -5,7 +5,7 @@ public class HunterCamera : MonoBehaviour
     public Transform Target;
     public float MouseSensitivity = 10f;
 
-    private float verticalRotation;
+    private float vertialRotation;
     private float horizontalRotation;
 
     void LateUpdate()
@@ -15,16 +15,16 @@ public class HunterCamera : MonoBehaviour
             return;
         }
 
-        transform.position = Target.position;
+        transform.position = Target.position+Vector3.up;      
 
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        verticalRotation -= mouseY * MouseSensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -70f, 70f);
+        vertialRotation -= mouseY * MouseSensitivity;
+        vertialRotation = Mathf.Clamp(vertialRotation, -70f, 70f);
 
         horizontalRotation += mouseX * MouseSensitivity;
 
-        transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0);
+        transform.rotation = Quaternion.Euler(vertialRotation, horizontalRotation, 0);
     }
 }

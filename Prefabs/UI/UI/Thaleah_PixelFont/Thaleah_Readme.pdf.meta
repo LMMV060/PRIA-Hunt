@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: f2175b8bdd5d03145be1fab8c5d0ce83
+guid: 2b9a81d04b64ba846b895089734b9415
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140059
+  packageName: Free Pixel Font - Thaleah
+  packageVersion: 1.1
+  assetPath: Assets/Thaleah_PixelFont/Thaleah_Readme.pdf
+  uploadId: 303939

@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 180143f4a57f2124dae57257c95bc10a
-DefaultImporter:
+guid: 43d59b5c638b0664db55f3a4e4d130ef
+NativeFormatImporter:
   externalObjects: {}
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +11,5 @@ AssetOrigin:
   productId: 140059
   packageName: Free Pixel Font - Thaleah
   packageVersion: 1.1
-  assetPath: Assets/Thaleah_PixelFont/Thaleah_Demo.unity
+  assetPath: Assets/Thaleah_PixelFont/Materials/ThaleahFat.mat
   uploadId: 303939

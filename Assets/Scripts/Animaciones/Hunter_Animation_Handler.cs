@@ -1,24 +1,36 @@
+using Fusion;
 using UnityEngine;
 
-public class Hunter_Animation_Handler : MonoBehaviour
+public class Hunter_Animation_Handler : NetworkBehaviour
 {
     private Animator animator;
+
+    // Networked properties to sync movement states
+    [Networked] private bool IsMoving { get; set; }
+    [Networked] private bool IsSprinting { get; set; }
+
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        // Only the local player should update networked state
+        if (Object.HasStateAuthority)
+        {
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
 
-        bool isMoving = (h != 0 || v != 0);
+            bool isMoving = (h != 0 || v != 0);
+            bool isSprinting = isMoving && Input.GetKey(KeyCode.LeftShift);
 
-        animator.SetBool("move", isMoving);
+            IsMoving = isMoving;
+            IsSprinting = isSprinting;
+        }
 
-        bool isSprinting = isMoving && (Input.GetKey(KeyCode.LeftShift));
-        animator.SetBool("sprint", isSprinting);
+        // All clients (including host) update the animator based on networked state
+        animator.SetBool("move", IsMoving);
+        animator.SetBool("sprint", IsSprinting);
     }
 }

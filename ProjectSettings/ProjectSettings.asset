@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: a4b015067704a0748838d6d360abe635
+  productGUID: c93aeaaf9e556a64bb989be0edeca2e6
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -142,7 +142,8 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -921,11 +922,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1e0f4c6b-1801-4658-8c6c-9717754ef7a8
+  cloudProjectId: bfd9d240-cc5d-4af9-8aed-7e064631a7f9
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: PRIA-Hunt 2025-12-04_17-16-15
-  organizationId: amunada389
+  projectName: PRIA-Hunt
+  organizationId: gameoverglitch
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

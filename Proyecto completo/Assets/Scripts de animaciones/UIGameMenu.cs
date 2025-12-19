@@ -80,12 +80,12 @@ namespace Starter
 			await Disconnect();
 		}
 
-		public async void BackToMenu()
+		public async void ExitGame()
 		{
 			await Disconnect();
 
-			SceneManager.LoadScene(0);
-		}
+            Application.Quit();
+        }
 
 		public void TogglePanelVisibility()
 		{

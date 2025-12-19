@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 {
-    public GameObject PlayerPrefabHide;
-    public GameObject PlayerPrefabHunter;
+    [SerializeField] private GameObject PlayerPrefabHide;
+    [SerializeField] private GameObject PlayerPrefabHunter;
+    [SerializeField] private GameObject PlayerPrefabDefault;
 
     public void PlayerJoined(PlayerRef player)
     {

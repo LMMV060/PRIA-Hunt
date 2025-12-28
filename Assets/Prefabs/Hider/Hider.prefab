@@ -1382,8 +1382,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3214426263663606795}
   - component: {fileID: 3033873654561136040}
-  - component: {fileID: 649992112380926904}
   - component: {fileID: 808884181255253871}
+  - component: {fileID: 1080137852223379030}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -1431,18 +1431,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &649992112380926904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5793822758416318010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f84294483f678f499b345c5566cc9e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &808884181255253871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,6 +1449,18 @@ MonoBehaviour:
   StateHashes: 0000000039e4f3b20a57d685792b46e34a9863d4df27ac0631456473f34e8a73ee494d34
   TriggerHashes: 00000000
   TotalWords: 1
+--- !u!114 &1080137852223379030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793822758416318010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711a3816d3be93446ad30e42ed25a748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5811313180802656102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,7 +2013,7 @@ GameObject:
   - component: {fileID: 5749894181979320917}
   m_Layer: 0
   m_Name: Hider
-  m_TagString: Untagged
+  m_TagString: Hider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,8 +2053,8 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: -7539507066955439683}
   - {fileID: 5749894181979320917}
-  - {fileID: 649992112380926904}
   - {fileID: 808884181255253871}
+  - {fileID: 1080137852223379030}
   ForceRemoteRenderTimeframe: 0
 --- !u!143 &8268170802347756040
 CharacterController:
@@ -2113,6 +2113,7 @@ MonoBehaviour:
   PlayerSpeed: 2
   JumpForce: 5
   GravityValue: -9.81
+  Camera: {fileID: 0}
 --- !u!1 &7673776249377034930
 GameObject:
   m_ObjectHideFlags: 0

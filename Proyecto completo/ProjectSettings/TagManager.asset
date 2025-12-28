@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hunter
   - HunterUI
+  - Hider
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - Water
   - UI
   - FaceUI
-  - 
-  - 
-  - 
+  - Hunter
+  - HunterUI
+  - Hider
   - 
   - 
   - 

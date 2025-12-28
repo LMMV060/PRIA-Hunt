@@ -1,11 +1,12 @@
 using Fusion;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class HunterCamera : NetworkBehaviour
 {
     public Transform Target;
     public float MouseSensitivity = 10f;
-
+    [SerializeField] private GameObject panel;
     private float vertialRotation;
     private float horizontalRotation;
 
@@ -16,6 +17,9 @@ public class HunterCamera : NetworkBehaviour
             GetComponent<Camera>().enabled = false;
             return;
         }
+
+        panel.SetActive(true);
+
     }
 
     void LateUpdate()

@@ -1,17 +1,18 @@
 using UnityEngine;
 using Fusion;
+using System.Collections;
 
 public class GunHitScan : NetworkBehaviour
 {
-
     [SerializeField] private Transform shootCam;
     [SerializeField] private float rango = 20f;
-    [SerializeField] private float impactForce = 150f;
-    // Update is called once per frame
+    [SerializeField] private float impactForce = 10f;
+    [SerializeField] private LineRenderer lineRenderer;
+
     void Update()
     {
         if (!Object.HasStateAuthority) return;
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireWeapon();
@@ -21,21 +22,44 @@ public class GunHitScan : NetworkBehaviour
     private void FireWeapon()
     {
         RaycastHit hit;
+        Vector3 endPos = shootCam.position + shootCam.forward * rango;
+
         if (Physics.Raycast(shootCam.position, shootCam.forward, out hit, rango))
         {
+            endPos = hit.point;
+
             if (hit.collider.CompareTag("Hider"))
-            {
                 Debug.Log($"Hit a hider: {hit.collider.gameObject.name}");
-            }
             else
-            {
                 Debug.Log($"Hit object: {hit.collider.gameObject.name} (Tag: {hit.collider.tag})");
-            }
-            
-            if (hit.rigidbody != null)
+
+            // Aplicar fuerza solo si hay un Rigidbody
+            if (hit.collider.TryGetComponent(out NetworkPushableObject pushable))
             {
-                hit.rigidbody.AddForce(-hit.normal * impactForce);
+                Vector3 forceDir = -hit.normal * impactForce;
+                pushable.RPC_ApplyForce(forceDir, hit.point);
             }
         }
+
+        // Mostrar la línea en todos los clientes
+        Rpc_DrawShotLine(shootCam.position, endPos);
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void Rpc_DrawShotLine(Vector3 start, Vector3 end)
+    {
+        StartCoroutine(DrawShotLine(start, end));
+    }
+
+    private IEnumerator DrawShotLine(Vector3 start, Vector3 end)
+    {
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+
+        lineRenderer.enabled = true;
+
+        yield return new WaitForSeconds(0.1f);
+
+        lineRenderer.enabled = false;
     }
 }

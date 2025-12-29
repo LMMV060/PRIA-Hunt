@@ -22,6 +22,7 @@ public class NetworkPushableObject : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_ApplyForce(Vector3 force, Vector3 hitPoint)
     {
+        
         rb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
     }
 }

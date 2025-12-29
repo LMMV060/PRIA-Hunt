@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 4158293200
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 131073
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 918406365}
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 1986358558
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 131073
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1012291217}
@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 1182505708
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 131073
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1095893656}
@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2532848979
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 131073
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1960307335}

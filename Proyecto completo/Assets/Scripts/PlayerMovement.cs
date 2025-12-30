@@ -1,4 +1,5 @@
 using Fusion;
+using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
@@ -9,7 +10,7 @@ public class PlayerMovement : NetworkBehaviour
     private CharacterController _controller;
 
     public float PlayerSpeed = 2f;
-
+    public float Sprint = 2f;
     public float JumpForce = 5f;
     public float GravityValue = -9.81f;
 
@@ -48,12 +49,20 @@ public class PlayerMovement : NetworkBehaviour
         {
             _velocity = new Vector3(0, -1, 0);
         }
+        
+        float currentSpeed = PlayerSpeed;
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed *= Sprint;
+        }
+        
         Quaternion cameraRotationY = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
 
-        Vector3 move = cameraRotationY * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Runner.DeltaTime * PlayerSpeed;
+        Vector3 move = cameraRotationY * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Runner.DeltaTime * currentSpeed;
 
         _velocity.y += GravityValue * Runner.DeltaTime;
+        
         if (_jumpPressed && _controller.isGrounded)
         {
             _velocity.y += JumpForce;

@@ -5,9 +5,12 @@ public class Hunter_Animation_Handler : NetworkBehaviour
 {
     private Animator animator;
 
-    // Networked properties to sync movement states
+    // Se usa Networked para tener propiedades sincronizadas
     [Networked] private bool IsMoving { get; set; }
+    [Networked] private bool IsShooting { get; set; }
     [Networked] private bool IsSprinting { get; set; }
+
+
 
     void Start()
     {
@@ -23,14 +26,40 @@ public class Hunter_Animation_Handler : NetworkBehaviour
             float v = Input.GetAxisRaw("Vertical");
 
             bool isMoving = (h != 0 || v != 0);
-            bool isSprinting = isMoving && Input.GetKey(KeyCode.LeftShift);
-
+            
             IsMoving = isMoving;
-            IsSprinting = isSprinting;
+            
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                IsShooting = true;
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift) && isMoving)
+            {
+                IsSprinting = true;
+            }
+            else
+            {
+                IsSprinting = false;
+            }
         }
 
-        // All clients (including host) update the animator based on networked state
         animator.SetBool("move", IsMoving);
         animator.SetBool("sprint", IsSprinting);
+        
+        if (IsShooting)
+        {
+            animator.SetBool("shooting", true);
+
+            if (Object.HasStateAuthority)
+            {
+                IsShooting = false;
+            }
+        }
+        else
+        {
+            animator.SetBool("shooting", false);
+        }
     }
+    
 }

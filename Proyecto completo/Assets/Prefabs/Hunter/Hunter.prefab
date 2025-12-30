@@ -329,10 +329,6 @@ MonoBehaviour:
   Target: {fileID: 5456426051052921300}
   MouseSensitivity: 10
   panel: {fileID: 3027804553521575683}
-  textosTMP:
-  - {fileID: 5336504622700116776}
-  - {fileID: 3046406080720787199}
-  - {fileID: 1093709991769670245}
 --- !u!1 &3046406080720787199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,7 +1069,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1098,7 +1094,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0

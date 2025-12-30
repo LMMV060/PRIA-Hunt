@@ -30,7 +30,7 @@ namespace Starter
 		public GameObject StartGroup;
 		public GameObject DisconnectGroup;
 
-		private NetworkRunner _runnerInstance;
+		public NetworkRunner _runnerInstance;
 		private static string _shutdownStatus;
 
 		public async void StartGame()

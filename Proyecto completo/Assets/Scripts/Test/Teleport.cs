@@ -5,7 +5,7 @@ public class Teleport : MonoBehaviour
 {
     [SerializeField] private Transform spawnPointGame1; 
     [SerializeField] private Transform spawnPointLobby; 
-    [SerializeField] private float countdownTime = 10f;
+    //[SerializeField] private float countdownTime = 10f;
 
     [HideInInspector] public bool IsReady = false;
     private float timer;

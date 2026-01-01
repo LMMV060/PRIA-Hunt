@@ -1,5 +1,6 @@
 using Fusion;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour

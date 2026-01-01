@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 7758544273976879574}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Hunter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,9 +612,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.1709018
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.085450746, z: 0}
 --- !u!1 &4044041436071192846
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a36698799a040644a56401aa008693d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPointLobby: {fileID: 6218538091616241726, guid: db5743c2d872b854dbfd5bd1f46ba9cf, type: 3}
   PlayerSpeed: 5
   Sprint: 2
   JumpForce: 10
@@ -1048,7 +1049,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0.08974218}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

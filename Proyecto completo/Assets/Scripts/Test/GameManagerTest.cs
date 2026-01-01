@@ -4,66 +4,74 @@ using Fusion;
 
 public class GameManagerTest : SimulationBehaviour, IPlayerJoined
 {
-    // Lista para almacenar los PlayerId de los jugadores conectados
+    // Lista de PlayerIds conectados
+    [SerializeField] private Transform lobbySpawnPoint;
     public List<int> connectedPlayers = new List<int>();
 
-    // Diccionario para relacionar PlayerId con su prefab
-    public Dictionary<int, GameObject> playerPrefabs = new Dictionary<int, GameObject>();
+    // Lista de NetworkObjects de los jugadores (recibidos desde PlayerSpawner)
+    public List<NetworkObject> playerNetworkObjects = new List<NetworkObject>();
+    [Header("Control de timer")]
+    public bool IsReady = false;
+    public float countdownTime = 10f;
+    private float timer = 10f;
+    [SerializeField] GameObject runner;
+    
+    private void Update()
+    {
+        GameObject[] hunters = GameObject.FindGameObjectsWithTag("Hunter");
+        GameObject[] hiders = GameObject.FindGameObjectsWithTag("Hider");
+        GameObject[] tpObjects = GameObject.FindGameObjectsWithTag("tp");
 
-    [SerializeField] private GameObject PlayerPrefabHide;
-    [SerializeField] private GameObject PlayerPrefabHunter;
-    [SerializeField] private GameObject PlayerPrefabDefault;
+        if (IsReady)
+        {
+            
+            timer -= Time.deltaTime;
+            // Opcional: Mostrar el timer en consola
+            Debug.Log("Tiempo restante: " + Mathf.Ceil(timer));
 
+            // Cuando el timer llega a 0
+            if (timer <= 0f)
+            {
+                IsReady = false;   // Detenemos el timer
+                timer = countdownTime; // Reiniciamos el timer por si se vuelve a activar
+                Debug.Log("¡Tiempo terminado!");
+                foreach (GameObject obj in tpObjects)
+                {
+                    if (!obj.activeSelf) obj.SetActive(true);
+                }
+            }
+        }
+    }
+    
+    
+    
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         int playerId = player.PlayerId;
-
         if (!connectedPlayers.Contains(playerId))
         {
             connectedPlayers.Add(playerId);
         }
-
-        Debug.Log($"¡Un jugador se ha unido! Player ID: {playerId}");
-        Debug.Log($"Lista actual de jugadores: {string.Join(", ", connectedPlayers)}");
+        //Debug.Log($"¡Un jugador se ha unido! Player ID: {playerId}");
     }
-    
+
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
         int playerId = player.PlayerId;
-
-        // Quitar de la lista si estaba
         if (connectedPlayers.Contains(playerId))
         {
             connectedPlayers.Remove(playerId);
-            playerPrefabs.Remove(playerId);
         }
-
-        Debug.Log($"¡Un jugador se ha salido! Player ID: {playerId}");
-        Debug.Log($"Lista actual de jugadores: {string.Join(", ", connectedPlayers)}");
+        //Debug.Log($"¡Un jugador se ha salido! Player ID: {playerId}");
     }
 
     public void PlayerJoined(PlayerRef player)
     {
-        if (player == Runner.LocalPlayer)
-        {
-            GameObject prefabToSpawn = PlayerPrefabHunter;
-            playerPrefabs[player.PlayerId] = prefabToSpawn;
-            Runner.Spawn(prefabToSpawn, new Vector3(0, 1.5f, 0), Quaternion.identity);
-            Debug.Log($"Jugador {player.PlayerId} tiene el prefab: {GetPlayerPrefab(player.PlayerId)}");
-        }
     }
 
-    // Método para obtener el prefab de un PlayerId
-    public GameObject GetPlayerPrefab(int playerId)
+    // Método para actualizar la lista de NetworkObjects desde fuera
+    public void SetPlayerNetworkObjects(List<NetworkObject> netObjs)
     {
-        if (playerPrefabs.TryGetValue(playerId, out GameObject prefab))
-        {
-            return prefab;
-        }
-        else
-        {
-            Debug.LogWarning($"No se encontró prefab para el Player ID: {playerId}");
-            return null;
-        }
+        playerNetworkObjects = netObjs;
     }
 }

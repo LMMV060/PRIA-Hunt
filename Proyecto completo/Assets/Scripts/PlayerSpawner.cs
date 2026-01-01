@@ -20,12 +20,14 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
             
             GameObject prefabToSpawn = SelectedPlayerPrefabs[index];
 
-            NetworkObject spawned = Runner.Spawn(prefabToSpawn, spawnPoints[distancia].position, Quaternion.identity, player);
+            NetworkObject spawned = Runner.Spawn(prefabToSpawn, new Vector3(0, 0, 0), Quaternion.identity, player);
 
             // Guardar NetworkObject para futuras referencias
             spawnedPlayers[player.PlayerId] = spawned;
             
+            
             Debug.Log($"Jugador {player.PlayerId} spawneado y registrado como NetworkObject:  {spawned}");
+            
         }
     }
 }

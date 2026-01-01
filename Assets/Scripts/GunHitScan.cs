@@ -1,6 +1,7 @@
 using UnityEngine;
 using Fusion;
 using System.Collections;
+using Photon.Pun;
 
 public class GunHitScan : NetworkBehaviour
 {
@@ -29,10 +30,21 @@ public class GunHitScan : NetworkBehaviour
             endPos = hit.point;
 
             if (hit.collider.CompareTag("Hider"))
-                Debug.Log($"Hit a hider: {hit.collider.gameObject.name}");
-            else
-                Debug.Log($"Hit object: {hit.collider.gameObject.name} (Tag: {hit.collider.tag})");
+            {
+                Debug.Log($"Hit a hider: {hit.collider.gameObject.name}" + " by " + PhotonNetwork.NickName);
 
+                if (hit.collider.GetComponentInParent<HiderHealth>() is HiderHealth hiderHealth)
+                {
+                    //Debug.Log("Dañar");
+                    hiderHealth.RPC_TakeDamage();
+                }
+
+            }
+            else
+            {
+                Debug.Log($"Hit object: {hit.collider.gameObject.name} (Tag: {hit.collider.tag})");
+            }
+            
             // Aplicar fuerza solo si hay un Rigidbody
             if (hit.collider.TryGetComponent(out NetworkPushableObject pushable))
             {

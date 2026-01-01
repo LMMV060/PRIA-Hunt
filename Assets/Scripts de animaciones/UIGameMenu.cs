@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Fusion;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,7 +31,7 @@ namespace Starter
 		public GameObject StartGroup;
 		public GameObject DisconnectGroup;
 
-		private NetworkRunner _runnerInstance;
+		public NetworkRunner _runnerInstance;
 		private static string _shutdownStatus;
 
 		public async void StartGame()
@@ -38,7 +39,6 @@ namespace Starter
 			await Disconnect();
 
 			PlayerPrefs.SetString("PlayerName", NicknameText.text);
-
 			_runnerInstance = Instantiate(RunnerPrefab);
 
 			// Add listener for shutdowns so we can handle unexpected shutdowns

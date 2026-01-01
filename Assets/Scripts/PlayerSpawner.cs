@@ -1,19 +1,33 @@
+using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 {
-    [SerializeField] private GameObject PlayerPrefabHide;
-    [SerializeField] private GameObject PlayerPrefabHunter;
-    [SerializeField] private GameObject PlayerPrefabDefault;
+    public GameObject[] SelectedPlayerPrefabs;
+    [SerializeField] private Transform[] spawnPoints;
+    
+    // Diccionario para guardar NetworkObjects por PlayerId
+    public Dictionary<int, NetworkObject> spawnedPlayers = new Dictionary<int, NetworkObject>();
 
     public void PlayerJoined(PlayerRef player)
     {
         if (player == Runner.LocalPlayer)
         {
-            //GameObject prefabToSpawn = (Random.value < 0.5f) ? PlayerPrefabHide : PlayerPrefabHunter;
-            GameObject prefabToSpawn = PlayerPrefabHunter;
-            Runner.Spawn(prefabToSpawn, new Vector3(0, 1.5f, 0), Quaternion.identity);
+            int index = CharacterSelector.personajeSeleccionado;
+
+            var distancia = player.AsIndex % spawnPoints.Length;
+            
+            GameObject prefabToSpawn = SelectedPlayerPrefabs[index];
+
+            NetworkObject spawned = Runner.Spawn(prefabToSpawn, new Vector3(0, 0, 0), Quaternion.identity, player);
+
+            // Guardar NetworkObject para futuras referencias
+            spawnedPlayers[player.PlayerId] = spawned;
+            
+            
+            Debug.Log($"Jugador {player.PlayerId} spawneado y registrado como NetworkObject:  {spawned}");
+            
         }
     }
 }

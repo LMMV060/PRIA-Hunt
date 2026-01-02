@@ -39,6 +39,7 @@ namespace Starter
 			await Disconnect();
 
 			PlayerPrefs.SetString("PlayerName", NicknameText.text);
+			PhotonNetwork.NickName = NicknameText.text;
 			_runnerInstance = Instantiate(RunnerPrefab);
 
 			// Add listener for shutdowns so we can handle unexpected shutdowns

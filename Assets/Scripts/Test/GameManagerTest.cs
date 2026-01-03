@@ -1,77 +1,86 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Fusion;
 
-public class GameManagerTest : SimulationBehaviour, IPlayerJoined
+public class GameManagerTest : NetworkBehaviour
 {
-    // Lista de PlayerIds conectados
-    [SerializeField] private Transform lobbySpawnPoint;
-    public List<int> connectedPlayers = new List<int>();
+    public static GameManagerTest Instance;
 
-    // Lista de NetworkObjects de los jugadores (recibidos desde PlayerSpawner)
-    public List<NetworkObject> playerNetworkObjects = new List<NetworkObject>();
-    [Header("Control de timer")]
-    public bool IsReady = false;
-    public float countdownTime = 10f;
-    private float timer = 10f;
-    [SerializeField] GameObject runner;
-    
+    // Lista de jugadores solo en el host
+    private List<PlayerData> players = new List<PlayerData>();
+
     private void Update()
     {
-        GameObject[] hunters = GameObject.FindGameObjectsWithTag("Hunter");
-        GameObject[] hiders = GameObject.FindGameObjectsWithTag("Hider");
-        GameObject[] tpObjects = GameObject.FindGameObjectsWithTag("tp");
-
-        if (IsReady)
+        try
         {
-            
-            timer -= Time.deltaTime;
-            // Opcional: Mostrar el timer en consola
-            Debug.Log("Tiempo restante: " + Mathf.Ceil(timer));
+            //ShowAllHidersTime();
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning(e);
+        }
+        
+    }
+    
+    private void ShowAllPlayers()
+    {
+        PlayerData[] allPlayers = FindObjectsByType<PlayerData>(FindObjectsSortMode.None);
+        Debug.Log("---- Lista de jugadores ----");
+        foreach (var p in allPlayers)
+        {
+            Debug.Log("Usuario: " + p.Name + " Tiempo vivo: " + p.TimeAlive + "Score:  " + p.Score); 
+        }
+        Debug.Log("---------------------------");
+    }
+    
+    private void ShowAllPlayersScore()
+    {
+        PlayerData[] allPlayers = FindObjectsByType<PlayerData>(FindObjectsSortMode.None);
+        Debug.Log("---- Lista de jugadores ----");
+        foreach (var p in allPlayers)
+        {
+            Debug.Log("Usuario: " + p.Name + "Score:  " + p.Score); 
+        }
+        Debug.Log("---------------------------");
+    }
+    
+    private void ShowAllPlayersTime()
+    {
+        PlayerData[] allPlayers = FindObjectsByType<PlayerData>(FindObjectsSortMode.None);
+        Debug.Log("---- Lista de jugadores ----");
+        foreach (var p in allPlayers)
+        {
+            Debug.Log("Usuario: " + p.Name + "Score:  " + p.Score); 
+        }
+        Debug.Log("---------------------------");
+    }
+    
+    private void ShowAllHidersTime()
+    {
+        PlayerData[] allPlayers = FindObjectsByType<PlayerData>(FindObjectsSortMode.None);
 
-            // Cuando el timer llega a 0
-            if (timer <= 0f)
+        Debug.Log("---- Tiempo vivo de los hiders ----");
+
+        foreach (var p in allPlayers)
+        {
+            //Recordatorio de que estoy hay que cambiarlo por 1
+            if (p.CharacterType == 2) 
             {
-                IsReady = false;   // Detenemos el timer
-                timer = countdownTime; // Reiniciamos el timer por si se vuelve a activar
-                Debug.Log("¡Tiempo terminado!");
-                foreach (GameObject obj in tpObjects)
-                {
-                    if (!obj.activeSelf) obj.SetActive(true);
-                }
+                string timeFormatted = FormatTime(p.TimeAlive);
+                Debug.Log($"Usuario: {p.Name} | Tiempo Vivo: {timeFormatted}");
             }
         }
     }
     
+    private string FormatTime(float time)
+    {
+        int totalSeconds = Mathf.FloorToInt(time);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+
+        return $"{minutes:00}:{seconds:00}";
+    }
     
-    
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-    {
-        int playerId = player.PlayerId;
-        if (!connectedPlayers.Contains(playerId))
-        {
-            connectedPlayers.Add(playerId);
-        }
-        //Debug.Log($"¡Un jugador se ha unido! Player ID: {playerId}");
-    }
-
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-    {
-        int playerId = player.PlayerId;
-        if (connectedPlayers.Contains(playerId))
-        {
-            connectedPlayers.Remove(playerId);
-        }
-        //Debug.Log($"¡Un jugador se ha salido! Player ID: {playerId}");
-    }
-
-    public void PlayerJoined(PlayerRef player)
-    {
-    }
-
-    // Método para actualizar la lista de NetworkObjects desde fuera
-    public void SetPlayerNetworkObjects(List<NetworkObject> netObjs)
-    {
-        playerNetworkObjects = netObjs;
-    }
 }

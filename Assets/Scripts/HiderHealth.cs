@@ -11,7 +11,8 @@ public class HiderHealth : NetworkBehaviour
     [SerializeField] private NetworkObject hiderPrefab;
     [SerializeField] private GameObject modelToHide;
     [SerializeField] private float invisTime = 3f;
-
+    
+    
     // -----------------------------
     // Método que recibe daño
     // -----------------------------
@@ -85,4 +86,5 @@ public class HiderHealth : NetworkBehaviour
         yield return new WaitForSeconds(invisTime);
         RPC_SetInvisible(false);
     }
+    
 }

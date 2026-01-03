@@ -2,6 +2,7 @@ using UnityEngine;
 using Fusion;
 using System.Collections;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 
 public class GunHitScan : NetworkBehaviour
 {
@@ -33,6 +34,7 @@ public class GunHitScan : NetworkBehaviour
             {
                 Debug.Log($"Hit a hider: {hit.collider.gameObject.name}" + " by " + PhotonNetwork.NickName);
 
+                PhotonNetwork.LocalPlayer.AddScore(1);
                 if (hit.collider.GetComponentInParent<HiderHealth>() is HiderHealth hiderHealth)
                 {
                     //Debug.Log("Dañar");

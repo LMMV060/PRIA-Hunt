@@ -15,8 +15,6 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         if (player == Runner.LocalPlayer)
         {
             int index = CharacterSelector.personajeSeleccionado;
-
-            var distancia = player.AsIndex % spawnPoints.Length;
             
             GameObject prefabToSpawn = SelectedPlayerPrefabs[index];
 

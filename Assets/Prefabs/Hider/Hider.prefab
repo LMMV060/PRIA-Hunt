@@ -2110,7 +2110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a36698799a040644a56401aa008693d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPointLobby: {fileID: 0}
   PlayerSpeed: 2
+  Sprint: 2
   JumpForce: 5
   GravityValue: -9.81
   Camera: {fileID: 0}

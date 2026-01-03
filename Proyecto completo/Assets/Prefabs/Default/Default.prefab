@@ -74,7 +74,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 1143
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8315924417367835154}
   - component: {fileID: 5102267467129119636}
   - component: {fileID: 4958821386801969885}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Nickname
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: alcachofaperuana
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f1a9e45eab51f449a4357f4fce58bfc, type: 2}
   m_sharedMaterial: {fileID: -3598195130193224020, guid: 7f1a9e45eab51f449a4357f4fce58bfc, type: 2}

@@ -21,26 +21,28 @@ public class PlayerData : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             Name = PhotonNetwork.LocalPlayer.NickName;
-            Score = PhotonNetwork.LocalPlayer.GetScore();
             CharacterType = CharacterSelector.personajeSeleccionado;
+
+            PhotonNetwork.LocalPlayer.SetScore(0);
+            Score = PhotonNetwork.LocalPlayer.GetScore();
+
+            TimeAlive = 0f;
         }
 
         UpdateNickname();
-        Score = 0;
-        TimeAlive = 0f;
     }
 
     public override void FixedUpdateNetwork()
     {
-        if (Object.HasStateAuthority)
+        if (Object.HasInputAuthority)
         {
-            UpdateTimeAlive();
+            TimeAlive += Runner.DeltaTime;
         }
     }
     
     public void Update()
     {
-        UpdateNickname();
+        UpdateNickname(); 
         UpdateScore();
     }
 
@@ -86,10 +88,11 @@ public class PlayerData : NetworkBehaviour
 
     private void UpdateScore()
     {
-        if (!Object.HasInputAuthority) return;
-        
         try
         {
+            if (!Object.HasInputAuthority)
+                return;
+
             Score = PhotonNetwork.LocalPlayer.GetScore();
         }
         catch (Exception e)

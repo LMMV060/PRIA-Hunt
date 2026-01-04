@@ -11,6 +11,7 @@ public class GunHitScan : NetworkBehaviour
     [SerializeField] private float impactForce = 10f;
     [SerializeField] private LineRenderer lineRenderer;
 
+    [SerializeField] private AudioClip shootingSound;
     void Update()
     {
         if (!Object.HasStateAuthority) return;
@@ -26,6 +27,7 @@ public class GunHitScan : NetworkBehaviour
         RaycastHit hit;
         Vector3 endPos = shootCam.position + shootCam.forward * rango;
 
+        Rpc_PlayShootSound(transform.position); 
         if (Physics.Raycast(shootCam.position, shootCam.forward, out hit, rango))
         {
             endPos = hit.point;
@@ -63,6 +65,15 @@ public class GunHitScan : NetworkBehaviour
     private void Rpc_DrawShotLine(Vector3 start, Vector3 end)
     {
         StartCoroutine(DrawShotLine(start, end));
+    }
+    
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void Rpc_PlayShootSound(Vector3 position)
+    {
+        float distance = Vector3.Distance(shootCam.transform.position, position);
+        float volume = Mathf.Clamp01(1f - distance / 10f);
+
+        AudioSource.PlayClipAtPoint(shootingSound, position, volume);
     }
 
     private IEnumerator DrawShotLine(Vector3 start, Vector3 end)

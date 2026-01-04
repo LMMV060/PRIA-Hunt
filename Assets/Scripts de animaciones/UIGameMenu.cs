@@ -33,7 +33,9 @@ namespace Starter
 
 		public NetworkRunner _runnerInstance;
 		private static string _shutdownStatus;
-
+		
+		public AudioSource music;
+		
 		public async void StartGame()
 		{
 			await Disconnect();
@@ -94,6 +96,7 @@ namespace Starter
 				return; // Panel cannot be hidden if the game is not running
 
 			PanelGroup.gameObject.SetActive(!PanelGroup.gameObject.activeSelf);
+			
 		}
 
 		private void OnEnable()

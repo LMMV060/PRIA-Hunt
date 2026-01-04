@@ -7,12 +7,14 @@ public class HiderHealth : NetworkBehaviour
     [Networked] public int hitPoints { get; private set; } = 3;
 
     [Header("Spawn Settings")]
+    [SerializeField] private Camera hiderCam;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private NetworkObject hiderPrefab;
     [SerializeField] private GameObject modelToHide;
     [SerializeField] private float invisTime = 3f;
     
-    
+    [SerializeField] private AudioClip[] hurtSounds;
+    [SerializeField] private AudioClip deathsound;
     // -----------------------------
     // Método que recibe daño
     // -----------------------------
@@ -23,9 +25,11 @@ public class HiderHealth : NetworkBehaviour
 
         hitPoints--;
         Debug.Log($"{gameObject.name} hit! Remaining HP: {hitPoints}");
+        Rpc_PlayHurtSound(transform.position);
 
         if (hitPoints <= 0)
         {
+            Rpc_PlayDeathSound(transform.position);
             RespawnUsingSpawn();
             Runner.Despawn(Object); // eliminar este Hider
         }
@@ -87,4 +91,23 @@ public class HiderHealth : NetworkBehaviour
         RPC_SetInvisible(false);
     }
     
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void Rpc_PlayHurtSound(Vector3 position)
+    {
+        AudioClip clip = hurtSounds[Random.Range(0, hurtSounds.Length)];
+
+        float distance = Vector3.Distance(hiderCam.transform.position, position);
+        float volume = Mathf.Clamp01(1f - distance / 20f);
+
+        AudioSource.PlayClipAtPoint(clip, position, volume);
+    }
+    
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void Rpc_PlayDeathSound(Vector3 position)
+    {
+        float distance = Vector3.Distance(hiderCam.transform.position, position);
+        float volume = Mathf.Clamp01(1f - distance / 20);
+
+        AudioSource.PlayClipAtPoint(deathsound, position, volume);
+    }
 }

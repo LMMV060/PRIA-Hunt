@@ -466,12 +466,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitPoints: 5
+  hiderCam: {fileID: 4241729376125556679}
   spawnPoints:
   - {fileID: 8700422604753599561, guid: 088d5ab3011806343a96e148cefd5a8b, type: 3}
   - {fileID: 2336857066831766845, guid: da5de267c44c633489894b1c74a31d41, type: 3}
   hiderPrefab: {fileID: 3269569717246391176}
   modelToHide: {fileID: 2818389173663518636}
   invisTime: 10
+  hurtSounds:
+  - {fileID: 8300000, guid: ab7f69c241c70d648a9c734ef915e489, type: 3}
+  - {fileID: 8300000, guid: f480b6b7aeff8f944a213885a2a5adde, type: 3}
+  - {fileID: 8300000, guid: 438c7032ed5e90941af5379fc7ea770c, type: 3}
+  deathsound: {fileID: 8300000, guid: 913446b1fad87fb4caa93e5aca332f2f, type: 3}
 --- !u!114 &1120712195946082520
 MonoBehaviour:
   m_ObjectHideFlags: 0

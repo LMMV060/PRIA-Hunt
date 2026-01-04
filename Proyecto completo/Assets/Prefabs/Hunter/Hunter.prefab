@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4026447229738869313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -522,7 +522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4435729888761137920
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1181,6 +1181,7 @@ MonoBehaviour:
   rango: 20
   impactForce: 10
   lineRenderer: {fileID: 758444686346111125}
+  shootingSound: {fileID: 8300000, guid: df8a4061a58f1994cb89356d816264bf, type: 3}
 --- !u!120 &758444686346111125
 LineRenderer:
   serializedVersion: 2
@@ -1322,7 +1323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4770248381565529107
 RectTransform:
   m_ObjectHideFlags: 0

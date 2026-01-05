@@ -8,6 +8,7 @@ TagManager:
   - HunterUI
   - Hider
   - tp
+  - Propt
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - HunterUI
   - Hider
   - HiderNickname
-  - 
+  - Propt
   - 
   - 
   - 

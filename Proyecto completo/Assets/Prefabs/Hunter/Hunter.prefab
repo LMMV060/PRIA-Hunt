@@ -1050,10 +1050,10 @@ GameObject:
   - component: {fileID: 3269569717246391176}
   - component: {fileID: 6618943941081276748}
   - component: {fileID: 4335967431435210285}
-  - component: {fileID: 7588986108311131661}
   - component: {fileID: 8121230243847245237}
   - component: {fileID: 758444686346111125}
   - component: {fileID: 1852971756821942143}
+  - component: {fileID: 5896039310752740027}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Hunter
@@ -1098,9 +1098,9 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6618943941081276748}
-  - {fileID: 7588986108311131661}
   - {fileID: 8121230243847245237}
   - {fileID: 1852971756821942143}
+  - {fileID: 5896039310752740027}
   - {fileID: 4413432243990702990}
   - {fileID: 6194541971248612040}
   - {fileID: 4991195445872914452}
@@ -1147,24 +1147,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7588986108311131661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4610889964166750814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a36698799a040644a56401aa008693d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPointLobby: {fileID: 6218538091616241726, guid: db5743c2d872b854dbfd5bd1f46ba9cf, type: 3}
-  PlayerSpeed: 5
-  Sprint: 2
-  JumpForce: 10
-  GravityValue: -9.81
-  Camera: {fileID: 4241729376125556679}
 --- !u!114 &8121230243847245237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,6 +1288,23 @@ MonoBehaviour:
   _CharacterType: 0
   _Score: 0
   _TimeAlive: 0
+--- !u!114 &5896039310752740027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610889964166750814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a41c4807a049fe4eafc12f5e830638b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpeed: 10
+  Sprint: 2
+  JumpForce: 10
+  GravityValue: -9.81
+  Camera: {fileID: 4241729376125556679}
 --- !u!1 &5336504622700116776
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,13 +3,11 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovementHunter : NetworkBehaviour
 {
     private Vector3 _velocity;
     private bool _jumpPressed;
-    private bool _resetPressed;
     private CharacterController _controller;
-    [SerializeField] private Transform spawnPointLobby;
 
     public float PlayerSpeed = 2f;
     public float Sprint = 2f;
@@ -29,11 +27,6 @@ public class PlayerMovement : NetworkBehaviour
         {
             _jumpPressed = true;
         }
-        
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            _resetPressed = true;
-        }
     }
     public override void Spawned()
     {
@@ -52,12 +45,6 @@ public class PlayerMovement : NetworkBehaviour
             return;
         }
         
-        if (_resetPressed)
-        {
-            TeleportToOrigin();
-            _resetPressed = false;
-            return;
-        }
 
         if (_controller.isGrounded)
         {
@@ -89,14 +76,6 @@ public class PlayerMovement : NetworkBehaviour
         }
 
         _jumpPressed = false;
-    }
-    
-    private void TeleportToOrigin()
-    {
-        _controller.enabled = false;
-        transform.position = spawnPointLobby.position;
-        _velocity = Vector3.zero;
-        _controller.enabled = true;
     }
     
 }

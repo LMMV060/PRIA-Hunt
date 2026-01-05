@@ -7,17 +7,15 @@ public class RaycastHiderTransformer : NetworkBehaviour
 {
     [SerializeField] private Transform shootCam;
     [SerializeField] private float rango = 20f;
-    [SerializeField] private LineRenderer lineRenderer;
+    //[SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Transform modelRoot;
     
     void Update()
     {
         if (!Object.HasStateAuthority) return;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Transform();
-        }
+        Transform();
+        
     }
 
     private void Transform()
@@ -31,22 +29,28 @@ public class RaycastHiderTransformer : NetworkBehaviour
             
             Debug.Log($"Hit object: {hit.collider.gameObject.name} (Tag: {hit.collider.tag})");
             
-            if (hit.collider.CompareTag("Propt"))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Rpc_ReplaceModel(hit.collider.gameObject.name);
+                if (hit.collider.CompareTag("Propt"))
+                {
+                    Rpc_ReplaceModel(hit.collider.gameObject.name);
+                }
             }
         }
 
         // Mostrar la línea en todos los clientes
-        Rpc_DrawShotLine(shootCam.position, endPos);
+        //Rpc_DrawShotLine(shootCam.position, endPos);
     }
-    
+   
+    /*
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void Rpc_DrawShotLine(Vector3 start, Vector3 end)
     {
         StartCoroutine(DrawShotLine(start, end));
     }
+    */
 
+    /*
     private IEnumerator DrawShotLine(Vector3 start, Vector3 end)
     {
         lineRenderer.SetPosition(0, start);
@@ -58,6 +62,7 @@ public class RaycastHiderTransformer : NetworkBehaviour
 
         lineRenderer.enabled = false;
     }
+    */
     
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void Rpc_ReplaceModel(string propName)
@@ -75,6 +80,7 @@ public class RaycastHiderTransformer : NetworkBehaviour
         newModel.transform.localPosition = Vector3.zero; 
         newModel.transform.localScale = prop.transform.localScale; 
         newModel.tag = "Hider";
+        
 
         // Eliminar todos los componentes que NO sean MeshRenderer, MeshFilter o Collider
         foreach (var comp in newModel.GetComponentsInChildren<Component>())

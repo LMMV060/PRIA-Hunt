@@ -89,7 +89,7 @@ public class NetworkInfoPanel : NetworkBehaviour
         List<PlayerData> hiders = new List<PlayerData>();
         foreach (var p in allPlayers)
         {
-            if (p.CharacterType == 2)
+            if (p.CharacterType == 1)
                 hiders.Add(p);
         }
 

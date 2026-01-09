@@ -15,6 +15,7 @@ public class PlayerMovementHunter : NetworkBehaviour
     public float GravityValue = -9.81f;
 
     public Camera Camera;
+    
 
     private void Awake()
     {

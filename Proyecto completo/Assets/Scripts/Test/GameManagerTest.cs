@@ -65,8 +65,7 @@ public class GameManagerTest : NetworkBehaviour
 
         foreach (var p in allPlayers)
         {
-            //Recordatorio de que estoy hay que cambiarlo por 1
-            if (p.CharacterType == 2) 
+            if (p.CharacterType == 1) 
             {
                 string timeFormatted = FormatTime(p.TimeAlive);
                 Debug.Log($"Usuario: {p.Name} | Tiempo Vivo: {timeFormatted}");

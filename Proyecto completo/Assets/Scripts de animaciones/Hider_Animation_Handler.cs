@@ -1,3 +1,4 @@
+using System;
 using Fusion;
 using UnityEngine;
 
@@ -16,21 +17,28 @@ public class Hider_Animation_Handler : NetworkBehaviour
 
     void Update()
     {
-        // Only the local player should update networked state
-        if (Object.HasStateAuthority)
+        try
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            if (Object.HasStateAuthority)
+            {
+                float h = Input.GetAxisRaw("Horizontal");
+                float v = Input.GetAxisRaw("Vertical");
 
-            bool isMoving = (h != 0 || v != 0);
-            bool isSprinting = isMoving && Input.GetKey(KeyCode.LeftShift);
+                bool isMoving = (h != 0 || v != 0);
+                bool isSprinting = isMoving && Input.GetKey(KeyCode.LeftShift);
 
-            IsMoving = isMoving;
-            IsSprinting = isSprinting;
+                IsMoving = isMoving;
+                IsSprinting = isSprinting;
+            }
+
+            // All clients (including host) update the animator based on networked state
+            animator.SetBool("move", IsMoving);
+            animator.SetBool("sprint", IsSprinting);
         }
-
-        // All clients (including host) update the animator based on networked state
-        animator.SetBool("move", IsMoving);
-        animator.SetBool("sprint", IsSprinting);
+        catch (Exception e)
+        {
+            Debug.LogWarning(e.Message);
+            throw;
+        }
     }
 }

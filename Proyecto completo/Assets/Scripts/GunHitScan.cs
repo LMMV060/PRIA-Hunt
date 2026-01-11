@@ -12,6 +12,7 @@ public class GunHitScan : NetworkBehaviour
     [SerializeField] private LineRenderer lineRenderer;
 
     [SerializeField] private AudioClip shootingSound;
+    [SerializeField] private GameObject firePoint;
     void Update()
     {
         if (!Object.HasStateAuthority) return;
@@ -31,6 +32,7 @@ public class GunHitScan : NetworkBehaviour
         if (Physics.Raycast(shootCam.position, shootCam.forward, out hit, rango))
         {
             endPos = hit.point;
+            Rpc_ShootImpact(endPos, Quaternion.LookRotation(hit.normal));
 
             if (hit.collider.CompareTag("Hider"))
             {
@@ -58,7 +60,7 @@ public class GunHitScan : NetworkBehaviour
         }
 
         // Mostrar la línea en todos los clientes
-        Rpc_DrawShotLine(shootCam.position, endPos);
+        //Rpc_DrawShotLine(shootCam.position, endPos);
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
@@ -76,6 +78,22 @@ public class GunHitScan : NetworkBehaviour
         AudioSource.PlayClipAtPoint(shootingSound, position, volume);
     }
 
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void Rpc_ShootImpact(Vector3 position, Quaternion rotation)
+    {
+        GameObject impact = Instantiate(firePoint, position, rotation);
+
+        ParticleSystem ps = impact.GetComponent<ParticleSystem>();
+        if (ps != null)
+        {
+            Destroy(impact, ps.main.duration + ps.main.startLifetime.constantMax);
+        }
+        else
+        {
+            Destroy(impact, 2f); // fallback
+        }
+    }
+    
     private IEnumerator DrawShotLine(Vector3 start, Vector3 end)
     {
         lineRenderer.SetPosition(0, start);

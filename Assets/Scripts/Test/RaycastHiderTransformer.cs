@@ -1,5 +1,6 @@
 using System.Collections;
 using Fusion;
+using TMPro;
 using UnityEngine;
 using Behaviour = Fusion.Behaviour;
 
@@ -7,66 +8,96 @@ public class RaycastHiderTransformer : NetworkBehaviour
 {
     [SerializeField] private Transform shootCam;
     [SerializeField] private float rango = 20f;
-    //[SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Transform modelRoot;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LayerMask raycastMask;
+    [SerializeField] private GameObject propInfoPanel;
+    [SerializeField] private TextMeshProUGUI propNameText;
     
+    [SerializeField] private AudioClip failSound;
+    [SerializeField] private AudioClip successSound;
+
+    [Networked] private NetworkString<_32> CurrentProp { get; set; }
+
+    private string _lastAppliedProp;
+
     void Update()
     {
         if (!Object.HasStateAuthority) return;
 
         Transform();
-        
     }
 
     private void Transform()
     {
-        RaycastHit hit;
+        bool foundProp = false;
         Vector3 endPos = shootCam.position + shootCam.forward * rango;
+        RaycastHit[] hits = Physics.RaycastAll(shootCam.position, shootCam.forward, rango, raycastMask);
 
-        if (Physics.Raycast(shootCam.position, shootCam.forward, out hit, rango))
+        foreach (RaycastHit hit in hits)
         {
-            endPos = hit.point;
-            
+            if (hit.collider.CompareTag("Hider"))
+                continue;
+
             Debug.Log($"Hit object: {hit.collider.gameObject.name} (Tag: {hit.collider.tag})");
-            
+
+            foundProp = true;
+
+            // Para mostrar la UI
+            propInfoPanel.SetActive(true);
+            propNameText.text = hit.collider.gameObject.name;
+
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 if (hit.collider.CompareTag("Propt"))
                 {
+                    //Cambiamos el estado
                     Rpc_ReplaceModel(hit.collider.gameObject.name);
+                    Rpc_PlayTransformSound(transform.position);
+                    return;
+                }
+                else
+                {
+                    Rpc_PlayFailSound(transform.position);
+                    return;
                 }
             }
+            break;
         }
 
-        // Mostrar la línea en todos los clientes
-        //Rpc_DrawShotLine(shootCam.position, endPos);
+        if (!foundProp)
+        {
+            propInfoPanel.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !foundProp)
+        {
+            Rpc_PlayFailSound(transform.position);
+        }
     }
-   
-    /*
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    private void Rpc_DrawShotLine(Vector3 start, Vector3 end)
-    {
-        StartCoroutine(DrawShotLine(start, end));
-    }
-    */
 
-    /*
-    private IEnumerator DrawShotLine(Vector3 start, Vector3 end)
-    {
-        lineRenderer.SetPosition(0, start);
-        lineRenderer.SetPosition(1, end);
-
-        lineRenderer.enabled = true;
-
-        yield return new WaitForSeconds(0.1f);
-
-        lineRenderer.enabled = false;
-    }
-    */
-    
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    // RPC Actualiza el estado
+    [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
     private void Rpc_ReplaceModel(string propName)
     {
+        CurrentProp = propName;
+    }
+
+    // Aplicamos el modelo segun cuando se renderiza
+    public override void Render()
+    {
+        string propToApply = CurrentProp.ToString();
+        if (propToApply != _lastAppliedProp)
+        {
+            _lastAppliedProp = propToApply;
+            ApplyModel(propToApply);
+        }
+    }
+
+    private void ApplyModel(string propName)
+    {
+        if (string.IsNullOrEmpty(propName)) return;
+
         // Eliminar modelo actual
         foreach (Transform child in modelRoot)
             Destroy(child.gameObject);
@@ -77,11 +108,10 @@ public class RaycastHiderTransformer : NetworkBehaviour
 
         GameObject newModel = Instantiate(prop, modelRoot);
         newModel.transform.localRotation = prop.transform.localRotation;
-        newModel.transform.localPosition = Vector3.zero; 
-        newModel.transform.localScale = prop.transform.localScale; 
+        newModel.transform.localScale = prop.transform.localScale;
+        newModel.transform.localPosition = new Vector3(0, prop.transform.position.y + 1.5f, 0);
         newModel.tag = "Hider";
         
-
         // Eliminar todos los componentes que NO sean MeshRenderer, MeshFilter o Collider
         foreach (var comp in newModel.GetComponentsInChildren<Component>())
         {
@@ -91,5 +121,21 @@ public class RaycastHiderTransformer : NetworkBehaviour
         }
     }
 
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void Rpc_PlayTransformSound(Vector3 position)
+    {
+        float distance = Vector3.Distance(shootCam.transform.position, position);
+        float volume = Mathf.Clamp01(1f - distance / 10f);
 
+        AudioSource.PlayClipAtPoint(successSound, position, volume);
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void Rpc_PlayFailSound(Vector3 position)
+    {
+        float distance = Vector3.Distance(shootCam.transform.position, position);
+        float volume = Mathf.Clamp01(1f - distance / 10f);
+
+        AudioSource.PlayClipAtPoint(failSound, position, volume);
+    }
 }

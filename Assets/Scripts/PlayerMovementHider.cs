@@ -32,7 +32,7 @@ public class PlayerMovementHider : NetworkBehaviour
     {
         if (Object.HasStateAuthority)
         {            
-            Camera.GetComponent<HunterCamera>().Target = transform;
+            Camera.GetComponent<HiderCamera>().Target = transform;
         }
     }
 

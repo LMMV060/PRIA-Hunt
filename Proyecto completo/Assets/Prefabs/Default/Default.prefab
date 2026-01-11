@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 1120712195946082520}
   - component: {fileID: 7631085862471475927}
   - component: {fileID: 1971620093365366546}
+  - component: {fileID: 8762943343719834330}
   m_Layer: 12
   m_Name: Default
   m_TagString: Untagged
@@ -234,6 +235,7 @@ MonoBehaviour:
   - {fileID: 1120712195946082520}
   - {fileID: 7631085862471475927}
   - {fileID: 1971620093365366546}
+  - {fileID: 8762943343719834330}
   - {fileID: 4991195445872914452}
   - {fileID: 8126602460540504489}
   ForceRemoteRenderTimeframe: 0
@@ -331,6 +333,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 20
   VerticalSpeed: 10
+  Camera: {fileID: 4241729376125556679}
+--- !u!114 &8762943343719834330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610889964166750814}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a36698799a040644a56401aa008693d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpeed: 10
+  Sprint: 2
+  JumpForce: 10
+  GravityValue: -9.81
   Camera: {fileID: 4241729376125556679}
 --- !u!1 &7151877347318712706
 GameObject:

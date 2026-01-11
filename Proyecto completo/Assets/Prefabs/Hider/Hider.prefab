@@ -2267,11 +2267,11 @@ GameObject:
   - component: {fileID: -4909212741015510318}
   - component: {fileID: 8268170802347756040}
   - component: {fileID: -7539507066955439683}
-  - component: {fileID: 5368220256557177618}
   - component: {fileID: 4914303297976256271}
   - component: {fileID: 7989510902791761587}
   - component: {fileID: 6540230057587574264}
   - component: {fileID: 8239753486782785839}
+  - component: {fileID: 8344782882717671118}
   m_Layer: 0
   m_Name: Hider
   m_TagString: Hider
@@ -2316,10 +2316,10 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: -7539507066955439683}
-  - {fileID: 5368220256557177618}
   - {fileID: 4914303297976256271}
   - {fileID: 7989510902791761587}
   - {fileID: 6540230057587574264}
+  - {fileID: 8344782882717671118}
   - {fileID: 808884181255253871}
   - {fileID: 1080137852223379030}
   - {fileID: 2861652561432679412}
@@ -2366,23 +2366,6 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
---- !u!114 &5368220256557177618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7543870772051887740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777964500137f2843abd2c46d32e6017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerSpeed: 5
-  JumpForce: 5
-  GravityValue: -9.81
-  RotationSpeed: 10
-  Camera: {fileID: 2861652561432679412}
 --- !u!114 &4914303297976256271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2429,6 +2412,8 @@ MonoBehaviour:
     m_Bits: 2048
   propInfoPanel: {fileID: 3646992320711818203}
   propNameText: {fileID: 4790620796330544796}
+  failSound: {fileID: 8300000, guid: 97220fb65d53c1a44bace352b17b512f, type: 3}
+  successSound: {fileID: 8300000, guid: 3835c5f4b39fa914b817305d127c01b8, type: 3}
 --- !u!114 &6540230057587574264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2502,7 +2487,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2553,6 +2538,23 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8344782882717671118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543870772051887740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a36698799a040644a56401aa008693d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpeed: 10
+  Sprint: 2
+  JumpForce: 10
+  GravityValue: -9.81
+  Camera: {fileID: 8840696938945965045}
 --- !u!1 &7673776249377034930
 GameObject:
   m_ObjectHideFlags: 0

@@ -109,7 +109,8 @@ public class RaycastHiderTransformer : NetworkBehaviour
         newModel.transform.localRotation = prop.transform.localRotation;
         newModel.transform.localScale = prop.transform.localScale;
         //Si el modelo da problemas a la hora de cambiar el mapa cambia el 1.35
-        newModel.transform.localPosition = new Vector3(0, prop.transform.localPosition.y+1.35f, 0);
+        float yDifference = prop.transform.position.y - transform.position.y;
+        newModel.transform.localPosition = new Vector3(0, yDifference, 0);
         newModel.tag = "Hider";
         
         // Eliminar todos los componentes que NO sean MeshRenderer, MeshFilter o Collider

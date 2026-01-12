@@ -7,9 +7,8 @@ using Behaviour = Fusion.Behaviour;
 public class RaycastHiderTransformer : NetworkBehaviour
 {
     [SerializeField] private Transform shootCam;
-    [SerializeField] private float rango = 20f;
+    [SerializeField] private float rango = 1f;
     [SerializeField] private Transform modelRoot;
-    [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask raycastMask;
     [SerializeField] private GameObject propInfoPanel;
     [SerializeField] private TextMeshProUGUI propNameText;
@@ -109,7 +108,8 @@ public class RaycastHiderTransformer : NetworkBehaviour
         GameObject newModel = Instantiate(prop, modelRoot);
         newModel.transform.localRotation = prop.transform.localRotation;
         newModel.transform.localScale = prop.transform.localScale;
-        newModel.transform.localPosition = new Vector3(0, prop.transform.position.y + 1.5f, 0);
+        //Si el modelo da problemas a la hora de cambiar el mapa cambia el 1.35
+        newModel.transform.localPosition = new Vector3(0, prop.transform.localPosition.y+1.35f, 0);
         newModel.tag = "Hider";
         
         // Eliminar todos los componentes que NO sean MeshRenderer, MeshFilter o Collider

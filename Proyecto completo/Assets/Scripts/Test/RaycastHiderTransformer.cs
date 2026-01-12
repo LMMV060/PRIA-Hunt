@@ -110,14 +110,6 @@ public class RaycastHiderTransformer : NetworkBehaviour
         newModel.transform.localScale = prop.transform.localScale;
         //Si el modelo da problemas a la hora de cambiar el mapa cambia el 1.35
         float yDifference = prop.transform.position.y - transform.position.y;
-        if (yDifference < -1.5f)
-        {
-            yDifference = -0.1f;
-        }
-        else if (yDifference > 1.5f)
-        {
-            yDifference = 0.1f;
-        }
         newModel.transform.localPosition = new Vector3(0, yDifference, 0);
         newModel.tag = "Hider";
         

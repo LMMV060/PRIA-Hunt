@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4519282631701236}
   - component: {fileID: 33127526743645708}
   - component: {fileID: 23102150001078294}
-  - component: {fileID: 8264337637147417008}
+  - component: {fileID: 5965778219809190710}
   m_Layer: 0
   m_Name: rpgpp_lt_building_05
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8264337637147417008
+--- !u!64 &5965778219809190710
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

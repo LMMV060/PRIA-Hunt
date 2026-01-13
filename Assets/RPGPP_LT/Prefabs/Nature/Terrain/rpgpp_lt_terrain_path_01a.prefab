@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4508691648621678}
   - component: {fileID: 33395832597225912}
   - component: {fileID: 23224031473830138}
-  - component: {fileID: -5279460530724487688}
+  - component: {fileID: 8875558463168442183}
   m_Layer: 0
   m_Name: rpgpp_lt_terrain_path_01a
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-5279460530724487688
+--- !u!64 &8875558463168442183
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,10 +1,7 @@
 fileFormatVersion: 2
 guid: 5483d89531d4fe8489d8a4190d0d03e4
-PrefabImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+labels:
+- FusionPrefab
 AssetOrigin:
   serializedVersion: 1
   productId: 148410
@@ -12,3 +9,8 @@ AssetOrigin:
   packageVersion: 1.0.1
   assetPath: Assets/RPGPP_LT/Prefabs/Props/Wood/rpgpp_lt_log_wood_02a.prefab
   uploadId: 767010
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

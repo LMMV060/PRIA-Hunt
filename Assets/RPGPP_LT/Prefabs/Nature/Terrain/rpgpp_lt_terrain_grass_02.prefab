@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4802134562677756}
   - component: {fileID: 33916563977071252}
   - component: {fileID: 23168982960894600}
-  - component: {fileID: -3597668689208986629}
+  - component: {fileID: 5657042644451836776}
   m_Layer: 0
   m_Name: rpgpp_lt_terrain_grass_02
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-3597668689208986629
+--- !u!64 &5657042644451836776
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

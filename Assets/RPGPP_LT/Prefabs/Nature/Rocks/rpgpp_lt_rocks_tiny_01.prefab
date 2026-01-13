@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4383882971595202}
   - component: {fileID: 33843464718874480}
   - component: {fileID: 23060349023441154}
-  - component: {fileID: -6771144764980839811}
+  - component: {fileID: 1330907366997045563}
   m_Layer: 0
   m_Name: rpgpp_lt_rocks_tiny_01
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-6771144764980839811
+--- !u!64 &1330907366997045563
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

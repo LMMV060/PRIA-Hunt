@@ -1,10 +1,7 @@
 fileFormatVersion: 2
 guid: 338b909ffffbc684daf000e8aec0ce9d
-PrefabImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+labels:
+- FusionPrefab
 AssetOrigin:
   serializedVersion: 1
   productId: 148410
@@ -12,3 +9,8 @@ AssetOrigin:
   packageVersion: 1.0.1
   assetPath: Assets/RPGPP_LT/Prefabs/Props/Containers/rpgpp_lt_vase_03.prefab
   uploadId: 767010
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4557757265253404}
   - component: {fileID: 33735560036724328}
   - component: {fileID: 23388959142444960}
-  - component: {fileID: -3031877423644687608}
+  - component: {fileID: -5895932211511431826}
   m_Layer: 0
   m_Name: rpgpp_lt_hill_small_01
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-3031877423644687608
+--- !u!64 &-5895932211511431826
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

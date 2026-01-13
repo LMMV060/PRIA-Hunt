@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4943765590059028}
   - component: {fileID: 33969442268109768}
   - component: {fileID: 23797300038975642}
-  - component: {fileID: 2684265539188364135}
+  - component: {fileID: -4079251218488806076}
   m_Layer: 0
   m_Name: rpgpp_lt_terrain_sand_01
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2684265539188364135
+--- !u!64 &-4079251218488806076
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

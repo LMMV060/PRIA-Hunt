@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4372973593729692}
   - component: {fileID: 33031301588932660}
   - component: {fileID: 23309717094965422}
-  - component: {fileID: -6284207651820139696}
+  - component: {fileID: 3516773581118625121}
   m_Layer: 0
   m_Name: rpgpp_lt_rock_02
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-6284207651820139696
+--- !u!64 &3516773581118625121
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

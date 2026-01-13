@@ -2405,7 +2405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootCam: {fileID: 5972057846933815360}
-  rango: 7
+  rango: 20
   modelRoot: {fileID: 2103339850981513373}
   raycastMask:
     serializedVersion: 2

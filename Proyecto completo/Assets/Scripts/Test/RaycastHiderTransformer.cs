@@ -110,14 +110,33 @@ public class RaycastHiderTransformer : NetworkBehaviour
         newModel.transform.localScale = prop.transform.localScale;
         //Si el modelo da problemas a la hora de cambiar el mapa cambia el 1.35
         float yDifference = prop.transform.position.y - transform.position.y;
+        //Debug.Log(yDifference);
+        if (yDifference < -1.1f)
+        {
+            // Ignoramos la altura relativa del transform
+            yDifference = 0f;
 
-        if (yDifference < -1.5f)
+            // Ajuste por pivot: movemos el modelo para que su base quede al mismo nivel que otros
+            Collider propCollider = prop.GetComponent<Collider>();
+            if (propCollider != null)
+            {
+                // La distancia desde el pivot a la base
+                float pivotOffset = propCollider.bounds.min.y - prop.transform.position.y +1.05f;
+                yDifference -= pivotOffset; // bajamos el modelo para compensar el pivot
+            }
+        } else if (yDifference > 1.1f)
         {
-            yDifference = -0.1f;
-        }
-        else if (yDifference > 1.5f)
-        {
-            yDifference = 0.1f;
+            // Ignoramos la altura relativa del transform
+            yDifference = 0f;
+
+            // Ajuste por pivot: movemos el modelo para que su base quede al mismo nivel que otros
+            Collider propCollider = prop.GetComponent<Collider>();
+            if (propCollider != null)
+            {
+                // La distancia desde el pivot a la base
+                float pivotOffset = propCollider.bounds.min.y - prop.transform.position.y +1.05f;
+                yDifference -= pivotOffset; // bajamos el modelo para compensar el pivot
+            }
         }
 
         newModel.transform.localPosition = new Vector3(0, yDifference, 0);

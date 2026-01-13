@@ -111,7 +111,7 @@ public class RaycastHiderTransformer : NetworkBehaviour
         //Si el modelo da problemas a la hora de cambiar el mapa cambia el 1.35
         float yDifference = prop.transform.position.y - transform.position.y;
         //Debug.Log(yDifference);
-        if (yDifference < -1.1f)
+        if (yDifference < -0.1f)
         {
             // Ignoramos la altura relativa del transform
             yDifference = 0f;
@@ -124,7 +124,7 @@ public class RaycastHiderTransformer : NetworkBehaviour
                 float pivotOffset = propCollider.bounds.min.y - prop.transform.position.y +1.05f;
                 yDifference -= pivotOffset; // bajamos el modelo para compensar el pivot
             }
-        } else if (yDifference > 1.1f)
+        } else if (yDifference > 0.1f)
         {
             // Ignoramos la altura relativa del transform
             yDifference = 0f;

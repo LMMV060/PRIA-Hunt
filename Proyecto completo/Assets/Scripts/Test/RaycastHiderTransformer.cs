@@ -108,7 +108,7 @@ public class RaycastHiderTransformer : NetworkBehaviour
         GameObject newModel = Instantiate(prop, modelRoot);
         newModel.transform.localRotation = prop.transform.localRotation;
         newModel.transform.localScale = prop.transform.localScale;
-        //Si el modelo da problemas a la hora de cambiar el mapa cambia el 1.35
+        //Si el modelo da problemas a la hora de cambiar el mapa cambia el 1.3
         float yDifference = prop.transform.position.y - transform.position.y;
         //Debug.Log(yDifference);
         if (yDifference < -0.1f)
@@ -121,7 +121,7 @@ public class RaycastHiderTransformer : NetworkBehaviour
             if (propCollider != null)
             {
                 // La distancia desde el pivot a la base
-                float pivotOffset = propCollider.bounds.min.y - prop.transform.position.y +1.05f;
+                float pivotOffset = propCollider.bounds.min.y - prop.transform.position.y +0.85f;
                 yDifference -= pivotOffset; // bajamos el modelo para compensar el pivot
             }
         } else if (yDifference > 0.1f)
@@ -134,7 +134,7 @@ public class RaycastHiderTransformer : NetworkBehaviour
             if (propCollider != null)
             {
                 // La distancia desde el pivot a la base
-                float pivotOffset = propCollider.bounds.min.y - prop.transform.position.y +1.05f;
+                float pivotOffset = propCollider.bounds.min.y - prop.transform.position.y +0.85f;
                 yDifference -= pivotOffset; // bajamos el modelo para compensar el pivot
             }
         }

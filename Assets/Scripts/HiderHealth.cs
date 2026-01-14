@@ -1,11 +1,16 @@
 using UnityEngine;
 using Fusion;
 using System.Collections;
+using UnityEngine.UI;
 
 public class HiderHealth : NetworkBehaviour
 {
-    [Networked] public int hitPoints { get; private set; } = 3;
+    [Networked] public int hitPoints { get; private set; } = 4;
 
+    [Header("UI Health")]
+    [SerializeField] private Image healthImage;
+    [SerializeField] private Sprite[] healthSprites; 
+    
     [Header("Spawn Settings")]
     [SerializeField] private Camera hiderCam;
     [SerializeField] private Transform[] spawnPoints;
@@ -24,6 +29,7 @@ public class HiderHealth : NetworkBehaviour
         if (!Object.HasStateAuthority) return;
 
         hitPoints--;
+        UpdateHealthUI();
         Debug.Log($"{gameObject.name} hit! Remaining HP: {hitPoints}");
         Rpc_PlayHurtSound(transform.position);
 
@@ -109,5 +115,14 @@ public class HiderHealth : NetworkBehaviour
         float volume = Mathf.Clamp01(1f - distance / 20);
 
         AudioSource.PlayClipAtPoint(deathsound, position, volume);
+    }
+    
+    private void UpdateHealthUI()
+    {
+        if (healthImage == null || healthSprites == null || healthSprites.Length == 0)
+            return;
+
+        int clampedHp = Mathf.Clamp(hitPoints, 0, healthSprites.Length - 1);
+        healthImage.sprite = healthSprites[clampedHp];
     }
 }

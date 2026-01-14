@@ -13,11 +13,12 @@ public class NetworkInfoPanel : NetworkBehaviour
     [SerializeField] private GameObject hiderRanking;
     [SerializeField] private TextMeshProUGUI[] hiderRankingTexts;
     [SerializeField] private TextMeshProUGUI[] hiderRankingTime;
-    
+    [SerializeField] private TextMeshProUGUI hunterNumberOne;
+    [SerializeField] private TextMeshProUGUI hiderNumberOne;
+
     private void Update()
     {
         //Visual
-        
         try
         {
             UpdateHunterRanking();
@@ -79,6 +80,16 @@ public class NetworkInfoPanel : NetworkBehaviour
                 hunterRankingPoints[i].text = "0";
             }
         }
+        // 4. Mostrar Hunter Number One solo si supera los 30 segundos
+
+        if (hunters.Count > 0 && hunters[0].Score >= 3)
+        {
+            hunterNumberOne.text = hunters[0].Name;
+        }
+        else
+        {
+            hunterNumberOne.text = "";
+        }
     }
 
     private void UpdateHiderRanking()
@@ -109,6 +120,16 @@ public class NetworkInfoPanel : NetworkBehaviour
                 hiderRankingTexts[i].text = "---";
                 hiderRankingTime[i].text = "00:00";
             }
+        }
+        
+        // 4. Mostrar Hider Number One solo si supera los 30 segundos
+        if (hiders.Count > 0 && hiders[0].TimeAlive >= 30f)
+        {
+            hiderNumberOne.text = hiders[0].Name;
+        }
+        else
+        {
+            hiderNumberOne.text = "";
         }
     }
 

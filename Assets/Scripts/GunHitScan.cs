@@ -3,6 +3,8 @@ using Fusion;
 using System.Collections;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
+using TMPro;
+using UnityEngine.UI;
 
 public class GunHitScan : NetworkBehaviour
 {
@@ -13,14 +15,25 @@ public class GunHitScan : NetworkBehaviour
 
     [SerializeField] private AudioClip shootingSound;
     [SerializeField] private GameObject firePoint;
+    [SerializeField] private float fireCooldown = 3f; // segundos entre disparos
+    private float nextFireTime = 0f;
+    
+    //UI
+    [SerializeField] private TMP_Text cooldownText;
+    [SerializeField] private Image fireStateImage;
+
+    [SerializeField] private Sprite readySprite;
+    [SerializeField] private Sprite cooldownSprite;
     void Update()
     {
         if (!Object.HasStateAuthority) return;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= nextFireTime)
         {
             FireWeapon();
+            nextFireTime = Time.time + fireCooldown;
         }
+        UpdateCooldownUI();
     }
 
     private void FireWeapon()
@@ -104,5 +117,23 @@ public class GunHitScan : NetworkBehaviour
         yield return new WaitForSeconds(0.1f);
 
         lineRenderer.enabled = false;
+    }
+    
+    private void UpdateCooldownUI()
+    {
+        float remainingTime = nextFireTime - Time.time;
+
+        if (remainingTime > 0f)
+        {
+            // Cooldown activo
+            cooldownText.text = remainingTime.ToString("F1");
+            fireStateImage.sprite = cooldownSprite;
+        }
+        else
+        {
+            // Arma lista
+            cooldownText.text = string.Empty;
+            fireStateImage.sprite = readySprite;
+        }
     }
 }

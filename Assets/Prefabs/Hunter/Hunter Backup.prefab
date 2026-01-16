@@ -396,7 +396,6 @@ GameObject:
   - component: {fileID: 4321474634744169518}
   - component: {fileID: 7669906646939122259}
   - component: {fileID: 4991195445872914452}
-  - component: {fileID: 3104852720633926276}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -537,23 +536,6 @@ MonoBehaviour:
   Target: {fileID: 5456426051052921300}
   MouseSensitivity: 10
   panel: {fileID: 3027804553521575683}
---- !u!114 &3104852720633926276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2992559930157481261}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d41b0bd0339cd428156c5201814c59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 5456426051052921300}
-  Offset: {x: 0, y: 2, z: -4}
-  Sensitivity: 1
-  InvertX: 0
-  InvertY: 0
 --- !u!1 &3046406080720787199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1087,7 @@ GameObject:
   - component: {fileID: 5896039310752740027}
   - component: {fileID: 6193582020193839302}
   m_Layer: 0
-  m_Name: Hunter
+  m_Name: Hunter Backup
   m_TagString: Hunter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1143,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2212026607
+  SortKey: 51104107
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -1156,7 +1138,6 @@ MonoBehaviour:
   - {fileID: 4413432243990702990}
   - {fileID: 6194541971248612040}
   - {fileID: 4991195445872914452}
-  - {fileID: 3104852720633926276}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6618943941081276748
 MonoBehaviour:

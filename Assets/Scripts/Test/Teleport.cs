@@ -4,7 +4,7 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private Transform spawnPointGame1; 
-    [SerializeField] private Transform spawnPointLobby; 
+    //[SerializeField] private Transform spawnPointLobby; 
     //[SerializeField] private float countdownTime = 10f;
 
     [HideInInspector] public bool IsReady = false;
@@ -31,6 +31,7 @@ public class Teleport : MonoBehaviour
             player.transform.position = spawnPointGame1.position;
     }
     
+    /*
     private void TeleportPlayersLobby()
     {
         GameObject[] hunters = GameObject.FindGameObjectsWithTag("Hunter");
@@ -42,4 +43,5 @@ public class Teleport : MonoBehaviour
         foreach (var player in hiders)
             player.transform.position = spawnPointLobby.position;
     }
+    */
 }

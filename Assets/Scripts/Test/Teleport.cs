@@ -1,47 +1,55 @@
-using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
+using System.Collections;
 
-public class Teleport : MonoBehaviour
+public class Teleport : NetworkBehaviour
 {
-    [SerializeField] private Transform spawnPointGame1; 
-    //[SerializeField] private Transform spawnPointLobby; 
-    //[SerializeField] private float countdownTime = 10f;
+    [SerializeField] private Transform[] spawnPointHunters;
+    [SerializeField] private Transform[] spawnPointHiders;
 
-    [HideInInspector] public bool IsReady = false;
-    private float timer;
-    
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hunter") || other.CompareTag("Hider"))
+        //if (!HasStateAuthority) return;
+
+        if (other.CompareTag("Hunter"))
         {
-            // Teletransportamos todos los jugadores al spawnPoint
-            TeleportPlayersGame1();
+            Transform spawn = GetRandomSpawn(spawnPointHunters);
+            StartCoroutine(TeleportWithCC(other, spawn));
+        }
+        else if (other.CompareTag("Hider"))
+        {
+            Transform spawn = GetRandomSpawn(spawnPointHiders);
+            StartCoroutine(TeleportWithCC(other, spawn));
         }
     }
-    
-    private void TeleportPlayersGame1()
+
+    private IEnumerator TeleportWithCC(Collider other, Transform spawn)
     {
-        GameObject[] hunters = GameObject.FindGameObjectsWithTag("Hunter");
-        GameObject[] hiders = GameObject.FindGameObjectsWithTag("Hider");
+        CharacterController cc = other.GetComponent<CharacterController>();
 
-        foreach (var player in hunters)
-            player.transform.position = spawnPointGame1.position;
+        if (cc != null)
+            cc.enabled = false;
 
-        foreach (var player in hiders)
-            player.transform.position = spawnPointGame1.position;
+        other.transform.SetPositionAndRotation(
+            spawn.position,
+            spawn.rotation
+        );
+
+        yield return null; // 1 frame
+
+        if (cc != null)
+            cc.enabled = true;
     }
-    
-    /*
-    private void TeleportPlayersLobby()
+
+    private Transform GetRandomSpawn(Transform[] spawnPoints)
     {
-        GameObject[] hunters = GameObject.FindGameObjectsWithTag("Hunter");
-        GameObject[] hiders = GameObject.FindGameObjectsWithTag("Hider");
+        if (spawnPoints == null || spawnPoints.Length == 0)
+        {
+            Debug.LogError("No hay puntos de spawn asignados");
+            return transform;
+        }
 
-        foreach (var player in hunters)
-            player.transform.position = spawnPointLobby.position;
-
-        foreach (var player in hiders)
-            player.transform.position = spawnPointLobby.position;
+        int index = Random.Range(0, spawnPoints.Length);
+        return spawnPoints[index];
     }
-    */
 }

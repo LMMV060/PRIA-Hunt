@@ -45,6 +45,8 @@ public class PlayerMovementHider : NetworkBehaviour
             return;
         }
         
+        if (_controller == null || !_controller.enabled)
+            return;
 
         if (_controller.isGrounded)
         {

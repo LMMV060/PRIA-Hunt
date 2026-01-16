@@ -84,7 +84,7 @@ public class NetworkInfoPanel : NetworkBehaviour
 
         if (hunters.Count > 0 && hunters[0].Score >= 3)
         {
-            hunterNumberOne.text = hunters[0].Name;
+            hunterNumberOne.text = $"El hunter {hunters[0].Name} esta ganando por <color=yellow>{hunters[0].Score}</color> puntos";
         }
         else
         {
@@ -125,7 +125,7 @@ public class NetworkInfoPanel : NetworkBehaviour
         // 4. Mostrar Hider Number One solo si supera los 30 segundos
         if (hiders.Count > 0 && hiders[0].TimeAlive >= 30f)
         {
-            hiderNumberOne.text = hiders[0].Name;
+            hiderNumberOne.text = $"El hider {hiders[0].Name} esta ganando con <color=yellow>{FormatTime(hiders[0].TimeAlive)}</color>";
         }
         else
         {

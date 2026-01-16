@@ -45,7 +45,8 @@ public class PlayerMovementHunter : NetworkBehaviour
         {
             return;
         }
-        
+        if (_controller == null || !_controller.enabled)
+            return;
 
         if (_controller.isGrounded)
         {
@@ -69,6 +70,7 @@ public class PlayerMovementHunter : NetworkBehaviour
         {
             _velocity.y += JumpForce;
         }
+        
         _controller.Move(move + _velocity * Runner.DeltaTime);
 
         if (move != Vector3.zero)

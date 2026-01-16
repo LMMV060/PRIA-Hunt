@@ -675,7 +675,6 @@ MonoBehaviour:
   shootCam: {fileID: 2125686977513982539}
   rango: 20
   modelRoot: {fileID: 8115194825988811969}
-  lineRenderer: {fileID: 0}
   raycastMask:
     serializedVersion: 2
     m_Bits: 0
